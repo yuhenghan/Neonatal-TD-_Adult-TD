@@ -17,7 +17,7 @@ Sample3.data<-Read10X(data.dir = "~/mm10")
 AdultSP<- CreateSeuratObject(counts =  Sample4.data, project = "ASP9W", min.cells = 3, min.features = 200)
 NeonatalSP <- CreateSeuratObject(counts =  Sample3.data, project = "NSP9W", min.cells = 3, min.features = 200)
 SP9w <- merge(NeonatalSP, y = AdultSP, add.cell.ids = c("NSP9W", "ASP9W"), project = "PBMC12K")
-#reduce batch effect��not change results
+#reduce batch effect，not change conclusions
 #counts <- GetAssayData(PP.combined, assay = "RNA")
 #counts <- counts[-(which(rownames(counts) %in% c('Gnb2l1','Gltscr2',"Gm8730","Rpl23a-ps3","Gm9843","Gm10036","Sepw1","Rpl13-ps3","Rps12-ps3","Tceb2","Hmha1","Atp5o","Shfm1","Myeov2","2700060E02Rik","Selk","Tonsl","Rps18-ps3","Wdr89","Nhp2l1","Sep15","Fam101b","Sepp1","Gm10073","Whsc1l1","Zfos1","Gm10076","Gm8797","Gm26917"))),]
 #SP9w <- subset(SP9w, features = rownames(counts))
@@ -58,5 +58,5 @@ SP9w<-RenameIdents(object = SP9w, 'Klf3L Tn' = 'Tn', 'Klf3H Tn' = 'Tn','Ikzf2H T
 SP9w<-RenameIdents(object = SP9w, 'Tn' = 'Tn','Treg' = 'Treg', 'Tm' = 'Tm', 'Th1' = 'Th1','Th1' = 'Th1',  'Th17' = 'Th17', 'Tfh' = 'Tfh', 'Unknown' = 'Unknown')
 SP9wcol<-c('#000EFF', '#53A85F', '#F1BB72','#BD956A',  "#476D87",  "#E95C59",'#AB3282')
 DimPlot(SP9w, reduction = "umap", pt.size = .1,label = F,repel = T,cols = SP9wcol)+annotate(geom = 'segment', y = Inf, yend = Inf, color = 'black', x = -Inf, xend = Inf, size = 1)+annotate(geom = 'segment', x = Inf, xend = Inf, color = 'black', y = -Inf, yend = Inf, size = 0.5) +guides(color=F)
-DimPlot(SP9w, reduction = "umap", pt.size = .1,label = F,cols = myidentcol,group.by = "orig.ident")+annotate(geom = 'segment', y = Inf, yend = Inf, color = 'black', x = -Inf, xend = Inf, size = 1)+annotate(geom = 'segment', x = Inf, xend = Inf, color = 'black', y = -Inf, yend = Inf, size = 0.5) +guides(color=F)+ labs(title ="")#�ޱ��⣬�ӿ�ȥע�Ϳ�
+DimPlot(SP9w, reduction = "umap", pt.size = .1,label = F,cols = myidentcol,group.by = "orig.ident")+annotate(geom = 'segment', y = Inf, yend = Inf, color = 'black', x = -Inf, xend = Inf, size = 1)+annotate(geom = 'segment', x = Inf, xend = Inf, color = 'black', y = -Inf, yend = Inf, size = 0.5) +guides(color=F)+ labs(title ="")#无标题，加框，去注释框
 
