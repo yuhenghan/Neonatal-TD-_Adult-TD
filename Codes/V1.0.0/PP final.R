@@ -11,7 +11,7 @@ Sample1.data<-Read10X(data.dir = "~/mm10")
 AdultPP<- CreateSeuratObject(counts =  Sample2.data, project = "APP9W", min.cells = 3, min.features = 200)
 NeonatalPP <- CreateSeuratObject(counts =  Sample1.data, project = "NPP9W", min.cells = 3, min.features = 200)
 PP.combined <- merge(NeonatalPP, y = AdultPP, add.cell.ids = c("NPP9W", "APP9W"), project = "PBMC12K")
-#reduce batch effect£¬not change results
+#reduce batch effect, not change conclusions
 counts <- GetAssayData(PP.combined , assay = "RNA")
 counts <- counts[-(which(rownames(counts) %in% c('Gnb2l1','Gltscr2',"Gm8730","Rpl23a-ps3","Gm9843","Gm10036","Sepw1","Rpl13-ps3","Rps12-ps3","Tceb2","Hmha1","Atp5o","Shfm1","Myeov2","2700060E02Rik","Selk","Tonsl","Rps18-ps3","Wdr89","Nhp2l1","Sep15","Fam101b","Sepp1","Gm10073","Whsc1l1","Zfos1","Gm10076","Gm8797","Gm26917"))),]
 PP.combined  <- subset(PP.combined , features = rownames(counts))
