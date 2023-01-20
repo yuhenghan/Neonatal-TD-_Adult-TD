@@ -1,5 +1,5 @@
-library(org.Mm.eg.db) ##加载小鼠
-library(org.Hs.eg.db) ##加载人类
+library(org.Mm.eg.db) ##录脫脭脴脨隆脢贸
+library(org.Hs.eg.db) ##录脫脭脴脠脣脌脿
 library(ggplot2)
 library(clusterProfiler)
 library(dplyr)
@@ -11,10 +11,10 @@ library(dplyr)
 library(Matrix)
 markers <- FindMarkers(Treg, ident.1 = "0", ident.2 = "1", logfc.threshold = 0.2,min.pct =0.02)
 markers1 <- FindMarkers(Treg1, ident.1 = "0", ident.2 = "1", logfc.threshold = 0.2,min.pct =0.02)
-up <-rownames(markers[intersect(which(markers [,1]<0.05),which(markers [,2]>=0)),])
-down <-rownames(markers[intersect(which(markers [,1]<0.05),which(markers [,2]<=(-0.25))),])
-up1 <-rownames(markers[intersect(which(markers1 [,1]<0.05),which(markers [,2]>=0)),])
-down1 <-rownames(markers[intersect(which(markers1 [,1]<0.05),which(markers [,2]<=(-0.25))),])
+up <-rownames(markers[intersect(which(markers [,1]<0.05),which(markers [,2]>=0.2)),])
+down <-rownames(markers[intersect(which(markers [,1]<0.05),which(markers [,2]<=(-0.2))),])
+up1 <-rownames(markers[intersect(which(markers1 [,1]<0.05),which(markers [,2]>=0.2)),])
+down1 <-rownames(markers[intersect(which(markers1 [,1]<0.05),which(markers [,2]<=(-0.2))),])
 gs1 = bitr(up, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Mm.eg.db")
 gs2 = bitr(down, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Mm.eg.db")
 gs3 = bitr(up1, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Mm.eg.db")
